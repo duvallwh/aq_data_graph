@@ -16,9 +16,8 @@ from task_list.database import get_conn
 
 
 def convert_date(date_string):
-    """Converts isoformat date to utctimestamp (seconds from 1970)"""
-    d = date.fromisoformat(date_string)
-    dt = datetime(d.year, d.month, d.day)
+    """Converts isoformat date to utctimestamp (seconds from 1970) YYYY-MM-DD"""
+    dt = datetime.strptime(date_string, "%Y-%m-%d")
     return int(dt.timestamp())
 
 def get_sensor_time_series_data(id_ls, start_date_, end_date_):
