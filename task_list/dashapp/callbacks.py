@@ -7,7 +7,7 @@ import dash_html_components as html
 import pandas as pd
 import plotly.graph_objects as go
 
-from datetime import datetime
+from datetime import datetime, date
 from dash.dependencies import Input, Output, State
 from psycopg2.extras import RealDictCursor
 
@@ -17,7 +17,8 @@ from task_list.database import get_conn
 
 def convert_date(date_string):
     """Converts isoformat date to utctimestamp (seconds from 1970)"""
-    dt = datetime.fromisoformat(date_string)
+    d = date.fromisoformat(date_string)
+    dt = datetime(d.year, d.month, d.day)
     return int(dt.timestamp())
 
 def get_sensor_time_series_data(id_ls, start_date_, end_date_):
