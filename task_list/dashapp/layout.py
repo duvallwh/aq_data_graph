@@ -24,7 +24,7 @@ def get_navbar():
             dbc.NavItem(dbc.NavLink("Data Source", href="https://www.sandiegocounty.gov/content/sdc/apcd/en/CurrentAirQuality.html")),
             dbc.NavItem(dbc.NavLink("EPA Black Carbon Info", href="https://www.epa.gov/sites/production/files/2013-12/documents/black-carbon-fact-sheet_0.pdf")),
         ],
-        brand="Home",
+        brand="Unofficial San Diego BC Graph",
         brand_href="/",
         color="dark",
         dark=True,
