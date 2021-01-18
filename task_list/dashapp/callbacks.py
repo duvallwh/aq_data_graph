@@ -133,7 +133,10 @@ def register_callbacks(dash_app):
         """Get the sensors available, based on both the location and type of sensor chosen"""
         df = get_sensor_time_series_data(types_dropdown_value, start_date, end_date)
 
-        title = f"San Diego County Black Carbon Concentrations <br>({start_date} through {end_date})"
+        sd = datetime.strptime(start_date, "%Y-%m-%d").strftime("%d %B, %Y")
+        ed = datetime.strptime(start_date, "%Y-%m-%d").strftime("%d %B, %Y")
+
+        title = f"San Diego County Black Carbon Concentrations <br>({sd} through {ed})"
 
         scatter_ls = []
         for name in df['name'].unique():
