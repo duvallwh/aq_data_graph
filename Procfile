@@ -1,1 +1,1 @@
-web: gunicorn app:task_list
+web: gunicorn wsgi:task_list
