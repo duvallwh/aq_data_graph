@@ -1,25 +1,29 @@
 import os
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+import logging
 
-db = SQLAlchemy()
-migrate = Migrate()
+from flask import Flask, render_template
+
+# Local imports 
+from task_list import database
+from task_list.dash_setup import register_dashapps
+
 
 def create_app():
+    """Factory function that creates the Flask app"""
+
     app = Flask(__name__)
-    app.config.from_mapping(
-        SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev_key',
-        SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-            'sqlite:///' + os.path.join(app.instance_path, 'task_list.sqlite'),
-        SQLALCHEMY_TRACK_MODIFICATIONS = False
-    )
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    logging.basicConfig(level=logging.DEBUG)
 
-    db.init_app(app)
-    migrate.init_app(app, db)
+    @app.route('/')
+    def home():
+        """non-Dash route"""
+        return render_template('index.html')
+    
+    database.init_app(app) # postgreSQL db with psycopg2
 
-    from . import models
-    from . import task_list
-    app.register_blueprint(task_list.bp)
+    # for the dash app
+    register_dashapps(app)
 
     return app
+
