@@ -93,8 +93,10 @@ def get_chart_row(): # NEW
 
     return dbc.Row(
         dbc.Col(
-            id="time_series_chart_col"
-        )
+            id="time_series_chart_col", style={'height':'100%'}
+        ), style={'height':'100%', 'padding': '0px!important',
+        'margin':'0px!important'},
+        no_gutters=True
     )
 
 def get_layout():
