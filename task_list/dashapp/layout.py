@@ -80,8 +80,8 @@ def get_body():
                         # value=None,
                         id="date_picker",
                         min_date_allowed=date(2019, 10, 1),
-                        max_date_allowed=date(2021, 1, 31),
-                        initial_visible_month=date(2020, 12, 1))
+                        max_date_allowed=date(2021, 12, 31),
+                        initial_visible_month=date(2021, 6, 1))
 
                 ], xs=12, sm=6, md=4
             )
